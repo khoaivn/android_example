@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         install_datebase()
-//        get_data()
+        get_data()
 
         val listView = findViewById<ListView>(R.id.list_view)
 
@@ -60,28 +60,26 @@ class MainActivity : AppCompatActivity() {
         values.put("name", "John Doe")
         values.put("email", "john.doe@example.com")
 
-        val newRowId = db.insert("users", null, values)
-
-
+        db.insert("users", null, values)
 
     }
-//    fun get_data(){
-//        val dbHelper = MyDatabaseHelper(this)
-//        val db = dbHelper.readableDatabase
-//
-//        val cursor: Cursor = db.rawQuery("SELECT * FROM users", null)
-//
-//        while (cursor.moveToNext()) {
-//            val id: Int = cursor.getInt(cursor.getColumnIndex("id"))
-//            val name: String = cursor.getString(cursor.getColumnIndex("name"))
-//            val email: String = cursor.getString(cursor.getColumnIndex("email"))
-//            Log.d("MyApp", "id: $id, name: $name, email: $email")
-//        }
-//
-//        cursor.close()
-//        db.close()
-//
-//    }
+    fun get_data(){
+        val dbHelper = MyDatabaseHelper(this)
+        val db = dbHelper.readableDatabase
+
+        val cursor: Cursor = db.rawQuery("SELECT * FROM users", null)
+
+        while (cursor.moveToNext()) {
+            val id: Int = cursor.getInt(cursor.getColumnIndex("id"))
+            val name: String = cursor.getString(cursor.getColumnIndex("name"))
+            val email: String = cursor.getString(cursor.getColumnIndex("email"))
+            Log.d("MyApp", "id: $id, name: $name, email: $email")
+        }
+
+        cursor.close()
+        db.close()
+
+    }
 }
 
 class MyListAdapter(private val context: Activity, private val title: Array<String>, private val description: Array<String>, private val imgid: Array<Int>)
