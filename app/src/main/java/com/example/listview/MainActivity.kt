@@ -2,16 +2,12 @@ package com.example.listview
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
@@ -26,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        install_datebase()
-        get_data()
+        install_database()
+//        get_data()
 
 //        val listView = findViewById<ListView>(R.id.list_view)
 //
@@ -59,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 ////        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
 //        listView.adapter =  MyListAdapter(this, language, description, imageId)
     }
-    fun install_datebase(){
+    private fun install_database(){
 //        val dbHelper = MyDatabaseHelper(this)
 //        val db = dbHelper.writableDatabase
 //
@@ -75,8 +71,8 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d("TAG", "Value is: $value")
+//                val value = dataSnapshot.getValue<String>()
+                Log.d("TAG", "Value is:$dataSnapshot")
             }
 
             override fun onCancelled(error: DatabaseError) {
