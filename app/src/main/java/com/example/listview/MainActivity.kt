@@ -1,6 +1,5 @@
 package com.example.listview
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -58,7 +57,8 @@ class MainActivity : AppCompatActivity() {
                     val childSnapshot = childIterator.next()
                     val name = childSnapshot.child("name").getValue(String::class.java)
                     val code = childSnapshot.child("code").getValue(String::class.java)
-                    students_list.add(Student(name, code))
+                    val image = childSnapshot.child("image").getValue(String::class.java)
+                    students_list.add(Student(name, code, image))
                 }
                 println(students_list.get(0).name)
                 val listView = findViewById<ListView>(R.id.list_view)
@@ -85,8 +85,11 @@ class MyAdapter(context: Context, private val students_list: List<Student>) :
 
         val tv_title = view?.findViewById<TextView>(R.id.title)
         val tv_description = view?.findViewById<TextView>(R.id.description)
+        val img_image = view?.findViewById<ImageView>(R.id.icon)
         tv_title!!.text = item.name
         tv_description!!.text = item.code
+        val resourceId: Int = context.resources.getIdentifier(item.image, "drawable", context.getPackageName())
+        img_image!!.setImageResource(resourceId)
 
         return view!!
     }
