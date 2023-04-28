@@ -84,7 +84,7 @@ class MyAdapter(context: Context, private val students_list: List<Student>) :
         val item = students_list[position]
 
         val tv_title = view?.findViewById<TextView>(R.id.title)
-        val tv_description = view?.findViewById<TextView>(R.id.title)
+        val tv_description = view?.findViewById<TextView>(R.id.description)
         tv_title!!.text = item.name
         tv_description!!.text = item.code
 
